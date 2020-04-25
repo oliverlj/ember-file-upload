@@ -5,8 +5,14 @@ module.exports = function() {
       'script-src': [
         '\'self\'',
         // script tag injected by ember-cli-addon-docs
-        '\'sha256-vf+ZuKOhXq6af1D+7eWhmYHkEHMV8Z75nTtHTR7oFcg=\''
-      ],
+        '\'sha256-vf+ZuKOhXq6af1D+7eWhmYHkEHMV8Z75nTtHTR7oFcg=\'',
+        // Instanbul used by ember-cli-code-coverage uses eval by default through
+        // `new Function('return this')`. It provides a configuratoin option
+        // to prevent this but that one is not exposed by ember-cli-code-coverage
+        // yet. Please see details in this GitHub issue:
+        // https://github.com/kategengler/ember-cli-code-coverage/issues/214#issuecomment-619398136
+        process.env.COVERAGE ? '\'unsafe-inline\'' : null
+      ].filter(Boolean),
       'font-src': [
         '\'self\'',
         // font used in docs app
