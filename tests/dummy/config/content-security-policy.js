@@ -11,7 +11,7 @@ module.exports = function() {
         // to prevent this but that one is not exposed by ember-cli-code-coverage
         // yet. Please see details in this GitHub issue:
         // https://github.com/kategengler/ember-cli-code-coverage/issues/214#issuecomment-619398136
-        process.env.COVERAGE ? '\'unsafe-inline\'' : null
+        process.env.COVERAGE ? '\'unsafe-eval\'' : null
       ].filter(Boolean),
       'font-src': [
         '\'self\'',
