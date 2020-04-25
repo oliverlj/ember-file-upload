@@ -9,9 +9,12 @@ module.exports = function() {
         // Instanbul used by ember-cli-code-coverage uses eval by default through
         // `new Function('return this')`. It provides a configuratoin option
         // to prevent this but that one is not exposed by ember-cli-code-coverage
-        // yet. Please see details in this GitHub issue:
+        // yet.
+        // Additionally it injects a script tag into the page.
+        // Please see details in this GitHub issue:
         // https://github.com/kategengler/ember-cli-code-coverage/issues/214#issuecomment-619398136
-        process.env.COVERAGE ? '\'unsafe-eval\'' : null
+        process.env.COVERAGE ? '\'unsafe-eval\'' : null,
+        process.env.COVERAGE ? '\'sha256-bOFF6I2TCLkFw5Vfln8TzDOIau151BOflG6fMzQXGY8=\'' : null
       ].filter(Boolean),
       'font-src': [
         '\'self\'',
